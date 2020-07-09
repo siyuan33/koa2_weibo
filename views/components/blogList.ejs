@@ -1,0 +1,15 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-10 01:47:03
+ * @LastEditTime: 2020-07-10 02:00:41
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \node\koa2_weibo\views\components\blogList.ejs
+-->
+<ul>
+  <% blogListDataSource.forEach(blog => { %>
+  <li data-id="<%= blog.id %>">
+    <%= blog.title %>
+  </li>
+  <% }) %>
+</ul>

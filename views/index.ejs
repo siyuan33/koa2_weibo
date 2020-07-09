@@ -9,13 +9,14 @@
 <body>
   <h1><%= title %></h1>
   <p>EJS Welcome to <%= title %></p>
-  <p> <%= msg %></p>
   <p> <%= locals.data %></p>
-  <% if(isMe) {%>
-  <a href="#">@ 提到我的(3)</a>
-  <%} else {  %>
-  <button>关注</button>
-  <%}   %>
+
+  <%- include("./components/userInfo",{
+    isMe,
+  }) %>
+  <%- include("./components/blogList",{
+      blogListDataSource,
+    }) %>
   </p>
   </div>
 </body>
