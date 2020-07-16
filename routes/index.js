@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-07-10 01:17:54
- * @LastEditTime: 2020-07-10 01:59:09
+ * @LastEditTime: 2020-07-16 15:31:42
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \node\koa2_weibo\routes\index.js
@@ -39,8 +39,15 @@ router.get('/string', async (ctx, next) => {
 })
 
 router.get('/json', async (ctx, next) => {
+  const session = ctx.session
+  if (typeof (session.viewCounter) !== "number") {
+    session.viewCounter = 0
+  }
+  session.viewCounter += 1
+
   ctx.body = {
-    title: 'koa2 json'
+    title: 'koa2 json',
+    sessionViewCount: session.viewCounter
   }
 })
 
