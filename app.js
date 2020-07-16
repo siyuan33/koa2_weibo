@@ -40,7 +40,7 @@ app.use(koaSession({
   cookie: {
     path: "/",
     httpOnly: true,    // 只允许服务端去修改 不允许 客户端修改
-    maxAge: timeOut
+    maxAge: timeOut 
   },
   ttl: timeOut,   // redis 过期时间
   store: redisStore({
