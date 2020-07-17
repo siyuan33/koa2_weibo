@@ -1,17 +1,7 @@
 /** 
  * jest server
  */
-const supertest = require('supertest');
-
-// var http = require('http');
-// http.createServer(function (request, response) {
-//   response.writeHead(200, { 'Content-Type': 'text/plain' });
-//   response.end('Hello World');
-// }).listen(8081);
-
-// console.log('Server running at http://127.0.0.1:8081/');
-
-
+const supertest = require('supertest');  // 能向传入的后端服务发送请求
 const server = require('../app.js').callback()
 
 module.exports = supertest(server)

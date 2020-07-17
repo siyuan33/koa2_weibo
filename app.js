@@ -8,12 +8,9 @@ const logger = require('koa-logger')
 
 const index = require('./routes/index')
 const users = require('./routes/users')
+const koaSession = require('./koaSession.js')
 
-const koaSession = require('koa-generic-session');
 
-//redis
-const redisStore = require('koa-redis');
-const { REDIS_CONF } = require('./src/redisConf/db.js');
 
 // error handler
 onerror(app)
@@ -32,21 +29,9 @@ app.use(views(__dirname + '/views', {
 
 
 // session 配置
-const timeOut = 24 * 60 * 60 * 1000
 app.keys = ["asdax_TD2321"]
-app.use(koaSession({
-  key: "weibo.sid",    // cookie name 默认是 "koa.sid"
-  prefix: "weibo:sess:",  // redis key 的前缀 默认是 koa:sess:
-  cookie: {
-    path: "/",
-    httpOnly: true,    // 只允许服务端去修改 不允许 客户端修改
-    maxAge: timeOut 
-  },
-  ttl: timeOut,   // redis 过期时间
-  store: redisStore({
-    all: `${REDIS_CONF.host}:${REDIS_CONF.port}`
-  })
-}))
+// session 存到 redis 中
+app.use(koaSession)
 
 
 
